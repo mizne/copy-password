@@ -1,0 +1,19 @@
+@import '../css/base.css';
+body {
+  min-width: 400px;
+  min-height: 100px;
+  padding: 10px;
+}
+
+.subtitle {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.loading {
+  margin: 0 auto;
+  display: block;
+}
