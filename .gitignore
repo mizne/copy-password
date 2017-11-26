@@ -11,6 +11,10 @@
 # config
 /src/config
 
+# chrome extensions dist
+dist.crx
+dist.pem
+
 # environments
 /src/environments
 
