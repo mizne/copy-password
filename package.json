@@ -1,5 +1,5 @@
 {
-  "name": "first-webpack",
+  "name": "copy-password",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,9 +11,10 @@
   },
   "keywords": [],
   "author": "mizne",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/clipboard": "^1.5.35",
+    "@types/axios": "^0.14.0",
     "clean-webpack-plugin": "^0.1.17",
     "copy-webpack-plugin": "^4.2.3",
     "css-loader": "^0.28.7",
@@ -35,13 +36,8 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "axios": "^0.17.1",
     "bulma": "^0.6.1",
-    "clipboard": "^1.7.1",
-    "lodash": "^4.17.4",
-    "portfinder": "^1.0.13",
-    "rxjs": "^5.5.2",
-    "ua-discover": "0.0.15"
+    "clipboard": "^1.7.1"
   }
 }
