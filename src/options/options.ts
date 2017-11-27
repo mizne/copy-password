@@ -1,6 +1,6 @@
 import './options.css'
 // import { App } from './app'
-import store from '../popup/core/store'
+import Store from '../popup/core/Store'
 import { Prompt } from '../popup/core/Prompt'
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
           label: key,
           value: obj[key]
         }))
-        store.setDataItems(dataItems)
+        Store.setDataItems(dataItems)
         promptObj.promptSuccess(`解析并上传成功！`)
         window.setTimeout(() => {
           promptObj.promptInfo(`暂且只支持处理json格式文件！`)

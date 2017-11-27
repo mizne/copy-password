@@ -4,7 +4,7 @@ import { Visible } from './core/Visible'
 import { Prompt } from './core/Prompt'
 import { Settings } from './core/Settings'
 import { Option, Http } from './core/Http'
-import store from './core/store'
+import Store from './core/Store'
 
 export class App {
   private mailSelect: MailSelect
@@ -47,26 +47,25 @@ export class App {
   }
 
   private fetchOptions(): void {
-    const dataItems = store.getDataItems()
-    if (dataItems) {
-      this.fetchSuccess(dataItems)
-    } else {
-      this.fetchFailed(`您还没有上传要保存的数据，请点击右边的 配置选项图标 上传数据！`)
-    }
+    Store.getDataItems().then(dataItems => {
+      if (dataItems) {
+        this.fetchSuccess(dataItems)
+      } else {
+        this.fetchFailed(
+          `您还没有上传要保存的数据，请点击右边的 配置选项图标 上传数据！`
+        )
+      }
+    })
   }
 
   private fetchSuccess(options: Option[]) {
-    store.setDataItems(options)
     this.visible.showForSuccess()
-    this.mailSelect.initSelectOptions(options)
-    .attachSelectToInput()
+    this.mailSelect.initSelectOptions(options).attachSelectToInput()
     this.prompt.promptInfo(
       '更新所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
     )
 
-    new CopyButton('.clipboard', this.prompt)
-      .registerError()
-      .registerSuccess()
+    new CopyButton('.clipboard', this.prompt).registerError().registerSuccess()
   }
 
   private fetchFailed(errMsg: string) {

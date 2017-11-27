@@ -1,41 +1,44 @@
+import { Option } from './Http'
+
+declare const chrome: any
 const DATA_ITEMS = 'DATA_ITEMS'
 const DATA_SOURCE = 'DATA_SOURCE'
 
-import { Option } from './Http'
-
-function set(key: string, value: any): void {
-  localStorage.setItem(key, JSON.stringify(value))
-}
-
-function get(key: string): any {
-  const original = localStorage.getItem(key)
-  try {
-    return JSON.parse(original)
-  } catch(e) {
-    console.error(e.message)
-    return null
+export default class Store {
+  static setDataItems(items: Option[]): Promise<void> {
+    return new Promise(res => {
+      chrome.storage.sync.set(
+        {
+          [DATA_ITEMS]: items
+        },
+        function() {
+          res()
+        }
+      )
+    })
   }
-}
 
-function setDataSource(v: string): void {
-  set(DATA_SOURCE, v) 
-}
+  static getDataItems(): Promise<Option[]> {
+    return new Promise(res => {
+      chrome.storage.sync.get(DATA_ITEMS, function(obj: any) {
+        res(obj[DATA_ITEMS])
+      })
+    })
+  }
 
-function getDataSource(): string {
-  return get(DATA_SOURCE)
-}
+  static removeDataItems(): Promise<void> {
+    return new Promise(res => {
+      chrome.storage.sync.remove(DATA_ITEMS, function() {
+        res()
+      })
+    })
+  }
 
-function setDataItems(items: Option[]): void {
-  set(DATA_ITEMS, items)
-}
-
-function getDataItems(): Option[] {
-  return get(DATA_ITEMS)
-}
-
-export default {
-  setDataSource,
-  getDataSource,
-  setDataItems,
-  getDataItems
+  static clear(): Promise<void> {
+    return new Promise(res => {
+      chrome.storage.sync.clear(function() {
+        res()
+      })
+    })
+  }
 }
