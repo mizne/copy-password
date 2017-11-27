@@ -15,8 +15,8 @@ export class Prompt {
     this.prompt.querySelector('.message-body').innerHTML = text
   }
 
-  promptInit(text: string): void {
-    this.prompt.classList.remove('is-success', 'is-error')
+  promptInfo(text: string): void {
+    this.prompt.classList.remove('is-success', 'is-danger')
     this.prompt.classList.add('is-info')
     this.prompt.querySelector('.message-body').innerHTML = text
   }

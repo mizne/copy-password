@@ -53,7 +53,7 @@ export class App {
     this.visible.showForSuccessFromNetwork()
     this.mailSelect.initSelectOptions(options)
     .attachSelectToInput()
-    this.prompt.promptInit(
+    this.prompt.promptInfo(
       '更新所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
     )
 
@@ -76,7 +76,7 @@ export class App {
     this.visible.showForSuccessFromStorage()
     this.mailSelect.initSelectOptions(options)
     .attachSelectToInput()
-    this.prompt.promptInit(
+    this.prompt.promptInfo(
       '获取所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
     )
     new CopyButton('.clipboard', this.prompt)

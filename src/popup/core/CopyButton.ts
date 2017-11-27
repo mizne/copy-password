@@ -15,7 +15,7 @@ export class CopyButton {
       e.clearSelection()
       this.prompt.promptSuccess(`复制成功！`)
       window.setTimeout(() => {
-        this.prompt.promptInit(`选择左边项目，再点击右边复制按钮，复制到剪贴板！`)
+        this.prompt.promptInfo(`选择左边项目，再点击右边复制按钮，复制到剪贴板！`)
       }, 2e3)
     })
 
@@ -26,7 +26,7 @@ export class CopyButton {
     this.clipboard.on('error', () => {
       this.prompt.promptError(`复制失败！`)
       window.setTimeout(() => {
-        this.prompt.promptInit(`选择左边项目，再点击右边复制按钮，复制到剪贴板！`)
+        this.prompt.promptInfo(`选择左边项目，再点击右边复制按钮，复制到剪贴板！`)
       }, 2e3)
     })
 
