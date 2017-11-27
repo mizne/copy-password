@@ -7,6 +7,6 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    index: env.POPUP //便于开发调试哪个页面
+    index: env.OPTIONS //便于开发调试哪个页面
   }
 })

@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
   const saveBtnEle = document.querySelector('.save') as HTMLElement
   const inputEle = document.querySelector('.data-source') as HTMLInputElement
   const protocolEle = document.querySelector('.protocol') as HTMLSelectElement
+
+  const feedback = document.querySelector('.feedback') as HTMLElement
+
   if (originalDataSource) {
     const urlObj = extractURL(originalDataSource)
     inputEle.value = urlObj.host + urlObj.path + urlObj.search + urlObj.hash
@@ -19,6 +22,11 @@ document.addEventListener('DOMContentLoaded', function() {
     if (path) {
       const protocol = protocolEle.value
       store.setDataSource(protocol + path)
+
+      feedback.classList.remove('hidden')
+      window.setTimeout(() => {
+        feedback.classList.add('hidden')
+      }, 1500)
     }
   })
 })
