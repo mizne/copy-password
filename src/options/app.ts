@@ -23,9 +23,9 @@ export class App {
   }
 
   private initEvent(): void {
-    this.inputFile.registryChange().subscribe(textOrError => {
+    this.inputFile.readFile().subscribe(textOrError => {
       if (textOrError instanceof ErrorEvent) {
-        this.prompt.promptError(`解析文件失败！ ${textOrError.message}`)
+        this.prompt.promptError(`读取文件失败！ ${textOrError.message}`)
       } else {
         this.parseText(textOrError)
       }

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable'
 export class InputFile {
   constructor(private input: HTMLInputElement) {}
 
-  registryChange(): Observable<string | ErrorEvent> {
+  readFile(): Observable<string | ErrorEvent> {
     return new Observable((observer) => {
       this.input.addEventListener('change', function onChange(): void {
         const reader = new FileReader()
