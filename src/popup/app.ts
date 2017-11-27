@@ -2,6 +2,7 @@ import { CopyButton } from './core/CopyButton'
 import { MailSelect } from './core/MailSelect'
 import { Visible } from './core/Visible'
 import { Prompt } from './core/Prompt'
+import { Settings } from './core/Settings'
 import { Option, Http } from './core/Http'
 import store from './core/store'
 
@@ -10,6 +11,7 @@ export class App {
   private prompt: Prompt
   private visible: Visible
   private http: Http
+  private settings: Settings
 
   constructor() {
     this.initField()
@@ -29,11 +31,13 @@ export class App {
     const container = document.querySelector('.container') as HTMLElement
     const loading = document.querySelector('.loading') as HTMLElement
     const field = document.querySelector('.field') as HTMLElement
+    const settingsEl = document.querySelector('.settings') as HTMLElement
 
     this.mailSelect = new MailSelect(mailSelect, mailInput)
     this.prompt = new Prompt(prompt)
     this.visible = new Visible(container, loading, field)
     this.http = new Http()
+    this.settings = new Settings(settingsEl)
   }
 
   private initEvent(): void {
@@ -46,6 +50,7 @@ export class App {
       })
 
     this.mailSelect.initSelectChange()
+    this.settings.registryToOptionsPage()
   }
 
   private fetchSuccessFromNetwork(options: Option[]) {

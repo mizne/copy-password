@@ -5,3 +5,11 @@ body {
   padding: 10px;
 }
 
+.field {
+  display: flex;
+  align-items: center;
+}
+.field .settings {
+  margin-left: 20px;
+  cursor: pointer;
+}
