@@ -1,4 +1,6 @@
 @import '../css/base.css';
+@import '../css/iconfont/iconfont.css';
+
 body {
   min-width: 400px;
   min-height: 100px;
