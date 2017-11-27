@@ -7,6 +7,6 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    index: env.POPUP
+    index: env.OPTIONS
   }
 })

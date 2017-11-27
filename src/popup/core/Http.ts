@@ -1,6 +1,7 @@
 import axios from 'axios'
+import store from './store'
 
-const URL = 'http://localhost:8000/password.json'
+const DEFAULT_URL = 'http://localhost:8000/password.json'
 
 export interface Option {
   id: number
@@ -10,8 +11,9 @@ export interface Option {
 
 export class Http {
   fetchOptions(): Promise<Option[]> {
+    const url = store.getDataSource() || DEFAULT_URL
     return axios
-    .get(URL)
+    .get(url)
     .then(resp => {
       console.log(resp.data)
       return resp.data

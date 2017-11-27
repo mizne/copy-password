@@ -49,7 +49,7 @@ export class App {
   }
 
   private fetchSuccessFromNetwork(options: Option[]) {
-    store.set('options', options)
+    store.setDataItems(options)
     this.visible.showForSuccessFromNetwork()
     this.mailSelect.initSelectOptions(options)
     .attachSelectToInput()
@@ -63,7 +63,7 @@ export class App {
   }
 
   private fetchErrorFromNetwork(errMsg: string): void {
-    const options = store.get('options')
+    const options = store.getDataItems()
 
     if (options) {
       this.fetchSuccessFromStorage(options)
@@ -77,7 +77,7 @@ export class App {
     this.mailSelect.initSelectOptions(options)
     .attachSelectToInput()
     this.prompt.promptInfo(
-      '获取所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
+      '获取缓存所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
     )
     new CopyButton('.clipboard', this.prompt)
       .registerError()
@@ -85,7 +85,7 @@ export class App {
   }
 
   private fetchFailed(errMsg: string) {
-    this.prompt.promptError(`获取所有项目失败！ ${errMsg}`)
+    this.prompt.promptError(`查询所有项目失败！ ${errMsg}`)
     this.visible.showForFetchFailed()
   }
 }
