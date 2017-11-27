@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const URL = 'http://localhost:8000/pass.csv'
+const URL = 'http://localhost:8000/password.json'
 
 export interface Option {
   id: number
@@ -13,22 +13,15 @@ export class Http {
     return axios
     .get(URL)
     .then(resp => {
-      const data = resp.data as string
-      return parseCSV(data)
+      console.log(resp.data)
+      return resp.data
     })
-    .then(parsedCSV => {
-      return parsedCSV.filter((_, i) => i !== 0).map((e, i) => ({
+    .then(obj => {
+      return Object.keys(obj).map((key, i) => ({
         id: i,
-        label: e[1],
-        value: e[3]
+        label: key,
+        value: obj[key]
       }))
     })
   }
 }
-
-function parseCSV(csv: string): string[][] {
-  return csv
-    .split(/\n/)
-    .filter((_, i, arr) => i !== arr.length - 1)
-    .map(e => e.split(',').map(e => JSON.parse(e)))
-} 
