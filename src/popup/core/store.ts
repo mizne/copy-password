@@ -1,6 +1,8 @@
 const DATA_ITEMS = 'DATA_ITEMS'
 const DATA_SOURCE = 'DATA_SOURCE'
 
+import { Option } from './Http'
+
 function set(key: string, value: any): void {
   localStorage.setItem(key, JSON.stringify(value))
 }
@@ -23,11 +25,11 @@ function getDataSource(): string {
   return get(DATA_SOURCE)
 }
 
-function setDataItems(items: any[]): void {
+function setDataItems(items: Option[]): void {
   set(DATA_ITEMS, items)
 }
 
-function getDataItems(): any[] {
+function getDataItems(): Option[] {
   return get(DATA_ITEMS)
 }
 

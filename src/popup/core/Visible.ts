@@ -6,19 +6,14 @@ export class Visible {
     private field: HTMLElement
   ) {}
 
-  showForSuccessFromNetwork(): void {
+  showForSuccess(): void {
     this.hiddenLoading()
     .showContainer()
-  }
-
-  showForSuccessFromStorage(): void {
-    this.showForSuccessFromNetwork()
   }
 
   showForFetchFailed(): void {
     this.showContainer()
     .hiddenLoading()
-    .hiddenField()
   }
 
   private showContainer(): Visible {
