@@ -9,6 +9,8 @@ export class InputFile {
         const reader = new FileReader()
         const file = this.files[0]
         reader.onload = function onReaderLoad(): void {
+          console.log(this.result)
+          console.log(JSON.parse(this.result))
           observer.next(this.result)
         }
         reader.onerror = function onReaderError(ev: ErrorEvent): void {
