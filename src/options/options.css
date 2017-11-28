@@ -1,4 +1,6 @@
 @import '../css/base.css';
+@import '../css/iconfont/iconfont.css';
+
 body {
   min-width: 400px;
   min-height: 100px;
@@ -9,8 +11,7 @@ body {
   min-width: 340px;
 }
 
-.field {
-  align-items: center;
-  height: 70px;
+.message {
+  margin-top: 20px;
 }
 

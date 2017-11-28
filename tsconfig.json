@@ -18,13 +18,11 @@
       "es2017",
       "esnext"
     ],
-    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
     "noImplicitAny": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true

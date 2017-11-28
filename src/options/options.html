@@ -11,27 +11,29 @@
   <h1 class="subtitle">乾坤大挪移 选项</h1>
   <div class="field">
     <label class="label">数据源</label>
-    <div class="field has-addons">
-      <p class="control">
-        <span class="select">
-          <select class="protocol">
-            <option>http://</option>
-            <option>https://</option>
-          </select>
+
+    <div class="file">
+      <label class="file-label">
+        <input class="file-input" type="file" name="resume">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="iconfont icon-upload" aria-hidden="true"></i>
+          </span>
+          <span class="file-label">
+            上传文件
+          </span>
         </span>
-      </p>
-      <p class="control data-source-wrapper">
-        <input class="input data-source" type="text" placeholder="数据路径">
-      </p>
-      <p class="control">
-        <a class="button is-primary save">
-          保存
-        </a>
-      </p>
-      <p class="control hidden feedback">
-        <img src="../img/ok.gif" alt="">
-      </p>
+      </label>
     </div>
+
+    <article class="message">
+      <div class="message-header">
+        <p>提示</p>
+        <button class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">
+      </div>
+    </article>
   </div>
 </body>
 

@@ -4,7 +4,7 @@ import { Visible } from './core/Visible'
 import { Prompt } from './core/Prompt'
 import { Settings } from './core/Settings'
 import { Option, Http } from './core/Http'
-import store from './core/store'
+import Store from './core/Store'
 
 export class App {
   private mailSelect: MailSelect
@@ -41,56 +41,35 @@ export class App {
   }
 
   private initEvent(): void {
-    this.http.fetchOptions()
-      .then(options => {
-        this.fetchSuccessFromNetwork(options)
-      })
-      .catch(e => {
-        this.fetchErrorFromNetwork(e.message)
-      })
-
+    this.fetchOptions()
     this.mailSelect.initSelectChange()
     this.settings.registryToOptionsPage()
   }
 
-  private fetchSuccessFromNetwork(options: Option[]) {
-    store.setDataItems(options)
-    this.visible.showForSuccessFromNetwork()
-    this.mailSelect.initSelectOptions(options)
-    .attachSelectToInput()
+  private fetchOptions(): void {
+    Store.getDataItems().then(dataItems => {
+      if (dataItems) {
+        this.fetchSuccess(dataItems)
+      } else {
+        this.fetchFailed(
+          `您还没有上传要保存的数据，请点击右边的 配置选项图标 上传数据！`
+        )
+      }
+    })
+  }
+
+  private fetchSuccess(options: Option[]) {
+    this.visible.showForSuccess()
+    this.mailSelect.initSelectOptions(options).attachSelectToInput()
     this.prompt.promptInfo(
       '更新所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
     )
 
-    new CopyButton('.clipboard', this.prompt)
-      .registerError()
-      .registerSuccess()
-  }
-
-  private fetchErrorFromNetwork(errMsg: string): void {
-    const options = store.getDataItems()
-
-    if (options) {
-      this.fetchSuccessFromStorage(options)
-    } else {
-      this.fetchFailed(errMsg)
-    }
-  }
-
-  private fetchSuccessFromStorage(options: Option[]) {
-    this.visible.showForSuccessFromStorage()
-    this.mailSelect.initSelectOptions(options)
-    .attachSelectToInput()
-    this.prompt.promptInfo(
-      '获取缓存所有项目成功！选择左边项目，再点击右边复制按钮，复制到剪贴板！'
-    )
-    new CopyButton('.clipboard', this.prompt)
-      .registerError()
-      .registerSuccess()
+    new CopyButton('.clipboard', this.prompt).registerError().registerSuccess()
   }
 
   private fetchFailed(errMsg: string) {
-    this.prompt.promptError(`查询所有项目失败！ ${errMsg}`)
+    this.prompt.promptError(`${errMsg}`)
     this.visible.showForFetchFailed()
   }
 }
